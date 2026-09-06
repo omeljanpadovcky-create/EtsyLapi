@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -536,7 +536,7 @@
       font-weight: 500;
     }
 
-    /* ─── MODAL ─── */
+    /* ─── MODAL (Google Form) ─── */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -565,13 +565,14 @@
     .modal-container {
       background: #fff;
       border-radius: var(--radius);
-      max-width: 600px;
+      max-width: 800px;
       width: 100%;
       max-height: 90vh;
-      overflow-y: auto;
+      overflow: hidden;
       box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
       position: relative;
-      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
     }
     .modal-close {
       position: absolute;
@@ -582,66 +583,34 @@
       font-size: 28px;
       color: var(--text-muted);
       cursor: pointer;
+      z-index: 10;
       transition: color 0.2s;
       line-height: 1;
     }
     .modal-close:hover {
       color: var(--text-primary);
     }
-    .modal-container h2 {
+    .modal-body {
+      padding: 32px 28px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .modal-body h2 {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1.4rem;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
-    .modal-container .sub {
+    .modal-body .sub {
       color: var(--text-secondary);
       margin-bottom: 20px;
       font-size: 0.95rem;
     }
-    .modal-container .form-group {
-      margin-bottom: 16px;
-    }
-    .modal-container .form-group label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-      color: var(--text-secondary);
-    }
-    .modal-container .form-group input,
-    .modal-container .form-group textarea,
-    .modal-container .form-group select {
+    .modal-body iframe {
       width: 100%;
-      padding: 12px 16px;
-      border: 1.5px solid var(--border-light);
+      height: 600px;
+      border: none;
       border-radius: var(--radius-sm);
-      font-family: inherit;
-      font-size: 0.95rem;
-      background: #fff;
-      transition: border-color 0.2s;
-      color: var(--text-primary);
-    }
-    .modal-container .form-group input:focus,
-    .modal-container .form-group textarea:focus,
-    .modal-container .form-group select:focus {
-      outline: none;
-      border-color: var(--orange-400);
-      box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.08);
-    }
-    .modal-container .form-group textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-    .modal-container .btn-primary {
-      width: 100%;
-      justify-content: center;
-    }
-    .modal-success {
-      display: none;
-      text-align: center;
-      color: var(--orange-600);
-      font-weight: 600;
-      margin-top: 16px;
+      background: #fafafa;
     }
 
     @media (max-width: 992px) {
@@ -704,8 +673,11 @@
         max-width: 400px;
         margin: 0 auto;
       }
-      .modal-container {
-        padding: 24px 16px;
+      .modal-body iframe {
+        height: 480px;
+      }
+      .modal-body {
+        padding: 20px 16px;
       }
     }
 
@@ -720,6 +692,9 @@
       }
       .section-title {
         font-size: 1.5rem;
+      }
+      .modal-body iframe {
+        height: 400px;
       }
     }
   </style>
@@ -883,40 +858,15 @@
 
   <footer>© 2026 <a href="#">Lapi</a> · Shopify Developer · Ukraine</footer>
 
-  <!-- ─── MODAL (замість Google Form) ─── -->
+  <!-- ─── MODAL (Google Form — нова) ─── -->
   <div class="modal-overlay" id="formModal">
     <div class="modal-container">
       <button class="modal-close" id="modalClose">✕</button>
-      <h2>📋 Start your project</h2>
-      <p class="sub">Fill in the form and I'll get back to you within 24 hours.</p>
-      <form id="modalForm" action="https://formspree.io/f/xyeygbby" method="POST">
-        <div class="form-group">
-          <label for="modalName">Your name</label>
-          <input type="text" id="modalName" name="name" required />
-        </div>
-        <div class="form-group">
-          <label for="modalEmail">Email</label>
-          <input type="email" id="modalEmail" name="email" required />
-        </div>
-        <div class="form-group">
-          <label for="modalPackage">Package of interest (optional)</label>
-          <select id="modalPackage" name="package">
-            <option value="">Select a package…</option>
-            <option value="Consultation">Consultation</option>
-            <option value="Mini Migration">Mini Migration</option>
-            <option value="Full Migration">Full Migration</option>
-            <option value="Premium + Support">Premium + Support</option>
-            <option value="Migration + Marketing">Migration + Marketing</option>
-            <option value="Monthly Support">Monthly Support</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="modalMessage">Message</label>
-          <textarea id="modalMessage" name="message" placeholder="Tell me about your store…" required></textarea>
-        </div>
-        <button type="submit" class="btn-primary">Send message <span>→</span></button>
-        <div class="modal-success" id="modalSuccess">✅ Message sent! I'll contact you shortly.</div>
-      </form>
+      <div class="modal-body">
+        <h2>📋 Start your project</h2>
+        <p class="sub">Fill in the form and I'll get back to you within 24 hours.</p>
+        <iframe id="formIframe" src="https://docs.google.com/forms/d/e/1FAIpQLSfmUC3_qlUhgTBTXaDyzR0OcqxroumDqlCQk1Ik1pr3u4vmfw/viewform?embedded=true" frameborder="0">Loading…</iframe>
+      </div>
     </div>
   </div>
 
@@ -925,13 +875,13 @@
     // ── Modal logic ──
     const modal = document.getElementById('formModal');
     const modalClose = document.getElementById('modalClose');
-    const modalForm = document.getElementById('modalForm');
-    const modalSuccess = document.getElementById('modalSuccess');
+    const formIframe = document.getElementById('formIframe');
 
     function openModal() {
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
-      modalSuccess.style.display = 'none'; // hide previous success
+      // Reload iframe to reset form
+      formIframe.src = formIframe.src;
     }
 
     function closeModal() {
@@ -950,49 +900,12 @@
     // ── All "Select" buttons open modal ──
     document.querySelectorAll('.btn-select').forEach(btn => {
       btn.addEventListener('click', () => {
-        const pkg = btn.dataset.package || '';
-        // Pre-select the package in the dropdown
-        const select = document.getElementById('modalPackage');
-        if (pkg) {
-          for (let opt of select.options) {
-            if (opt.text === pkg) {
-              select.value = opt.value;
-              break;
-            }
-          }
-        }
         openModal();
       });
     });
 
     // ── Nav CTA opens modal ──
     document.getElementById('navCta').addEventListener('click', openModal);
-
-    // ── Hero "View packages" already links to #pricing, but we can also add a click to open modal from a button? Already handled.
-
-    // ── Form submission via AJAX (to show success without page reload) ──
-    modalForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(modalForm);
-      try {
-        const res = await fetch(modalForm.action, {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) {
-          modalSuccess.style.display = 'block';
-          modalForm.reset();
-          setTimeout(() => {
-            closeModal();
-          }, 3000);
-        } else {
-          alert('Something went wrong. Please try again or email me directly.');
-        }
-      } catch (err) {
-        alert('Network error. Please check your connection.');
-      }
-    });
 
     // ── Hamburger ──
     const hamburger = document.getElementById('hamburger');
