@@ -31,6 +31,7 @@
       --text-secondary: #57534e;
       --text-muted: #a8a29e;
       --border-light: #f0ebe6;
+      --shadow-sm: 0 2px 12px rgba(200, 100, 20, 0.06);
       --shadow-md: 0 12px 40px rgba(200, 100, 20, 0.12);
       --radius: 16px;
       --radius-sm: 10px;
@@ -83,6 +84,12 @@
 
     .section-title span {
       color: var(--orange-500);
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 560px;
     }
 
     /* ─── NAV ─── */
@@ -270,6 +277,175 @@
       letter-spacing: 0.04em;
     }
 
+    /* ─── TESTIMONIALS ─── */
+    #testimonials {
+      padding: 80px 0;
+      background: #fff;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .testimonials-header .section-desc {
+      margin: 0 auto;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--orange-200);
+      box-shadow: var(--shadow-sm);
+    }
+    .testimonial-card .stars {
+      color: var(--orange-400);
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+    .testimonial-card blockquote {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: 14px;
+    }
+    .testimonial-card .author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .testimonial-card .author .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--orange-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--orange-700);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .testimonial-card .author .name {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .testimonial-card .author .role {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── CASE STUDIES ─── */
+    #cases {
+      padding: 80px 0;
+      background: var(--bg);
+    }
+
+    .cases-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .cases-header .section-desc {
+      margin: 0 auto;
+    }
+
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .case-card {
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .case-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--orange-200);
+      box-shadow: var(--shadow-md);
+    }
+    .case-card .case-thumb {
+      height: 160px;
+      background: var(--orange-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      color: var(--orange-400);
+      position: relative;
+    }
+    .case-card .case-thumb .case-tag {
+      position: absolute;
+      bottom: 12px;
+      right: 16px;
+      background: var(--orange-500);
+      color: #fff;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 14px;
+      border-radius: 100px;
+    }
+    .case-card .case-body {
+      padding: 24px 24px 28px;
+    }
+    .case-card .case-body h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .case-card .case-body .case-sub {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--orange-500);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .case-card .case-body p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .case-card .case-body .case-results {
+      display: flex;
+      gap: 20px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-light);
+    }
+    .case-card .case-body .case-results .result-item {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .case-card .case-body .case-results .result-item strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--orange-600);
+      font-weight: 700;
+    }
+
     /* ─── ABOUT ─── */
     #about {
       padding: 80px 0;
@@ -330,6 +506,7 @@
     #contact {
       padding: 80px 0;
       background: #fff;
+      border-top: 1px solid var(--border-light);
     }
     .contact-grid {
       display: grid;
@@ -520,6 +697,14 @@
       .hero-stats {
         justify-content: center;
       }
+      .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .cases-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+      }
       .about-grid {
         grid-template-columns: 1fr;
         text-align: center;
@@ -557,6 +742,11 @@
       .section-title {
         font-size: 1.8rem;
       }
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+      }
       .modal-body iframe {
         height: 480px;
       }
@@ -593,6 +783,8 @@
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#cases">Cases</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a class="nav-cta" id="navCta">Let's talk</a></li>
@@ -610,7 +802,7 @@
           <p>I help brands move from Etsy to Shopify, customize themes, and optimise stores for conversion.</p>
           <div class="hero-actions">
             <button class="btn-primary" id="heroCta">Let's talk <span>→</span></button>
-            <a href="#about" class="btn-secondary">Learn more</a>
+            <a href="#cases" class="btn-secondary">View cases</a>
           </div>
           <div class="hero-stats">
             <div class="stat"><span class="num">7+</span><span class="label">Stores launched</span></div>
@@ -623,6 +815,116 @@
             <div style="font-size:3rem;">🛒</div>
             <h4 style="font-family:'Space Grotesk',sans-serif;margin-top:8px;">Etsy → Shopify</h4>
             <p style="color:var(--text-secondary);font-size:0.9rem;">Seamless migration with zero downtime</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ─── -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="testimonials-header">
+        <span class="section-label">Testimonials</span>
+        <h2 class="section-title">What clients <span>say</span></h2>
+        <p class="section-desc">Real feedback from real projects.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Omelian migrated our entire Etsy shop to Shopify in under a week. The store looks incredible and our sales have already increased."</blockquote>
+          <div class="author">
+            <div class="avatar">A</div>
+            <div><div class="name">Anna</div><div class="role">Fashion &amp; Apparel</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"The theme customisation was spot‑on. Our brand feels premium now, and the checkout flow is so smooth — customers love it."</blockquote>
+          <div class="author">
+            <div class="avatar">M</div>
+            <div><div class="name">Mark</div><div class="role">Health &amp; Supplements</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Lapi helped us recover 34% of abandoned carts with a simple email flow. Huge impact on our bottom line."</blockquote>
+          <div class="author">
+            <div class="avatar">V</div>
+            <div><div class="name">Vadim</div><div class="role">Baby Products</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CASE STUDIES ─── -->
+  <section id="cases">
+    <div class="container">
+      <div class="cases-header">
+        <span class="section-label">Case Studies</span>
+        <h2 class="section-title">Success <span>stories</span></h2>
+        <p class="section-desc">Real projects with measurable results.</p>
+      </div>
+      <div class="cases-grid">
+        <div class="case-card">
+          <div class="case-thumb">
+            📚
+            <span class="case-tag">Migration</span>
+          </div>
+          <div class="case-body">
+            <h3>Lapi Books</h3>
+            <div class="case-sub">Etsy → Shopify Migration</div>
+            <p>Online bookstore with 200+ products migrated from Etsy with custom theme, integrated reviews, and automated email flows.</p>
+            <div class="case-results">
+              <div class="result-item"><strong>+45%</strong> Sales increase</div>
+              <div class="result-item"><strong>32%</strong> Faster load time</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-thumb">
+            🐕
+            <span class="case-tag">Customization</span>
+          </div>
+          <div class="case-body">
+            <h3>Dog Care</h3>
+            <div class="case-sub">Theme Customization &amp; Optimization</div>
+            <p>Pet‑tech store with dark theme, subscription integration, optimized checkout flow, and mobile‑first design.</p>
+            <div class="case-results">
+              <div class="result-item"><strong>+28%</strong> Conversion rate</div>
+              <div class="result-item"><strong>40%</strong> Lower bounce rate</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-thumb">
+            🚗
+            <span class="case-tag">Full Setup</span>
+          </div>
+          <div class="case-body">
+            <h3>3D Car Parts</h3>
+            <div class="case-sub">Full Store Setup</div>
+            <p>Premium automotive parts store with advanced filtering, product variants, custom collections, and speedy performance.</p>
+            <div class="case-results">
+              <div class="result-item"><strong>+52%</strong> Organic traffic</div>
+              <div class="result-item"><strong>19%</strong> Higher AOV</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-thumb">
+            🏠
+            <span class="case-tag">Launch</span>
+          </div>
+          <div class="case-body">
+            <h3>Foyer Lapi</h3>
+            <div class="case-sub">Store Launch &amp; Branding</div>
+            <p>Cozy home‑goods store with collections, blog, email capture, and seamless checkout — launched in 5 days.</p>
+            <div class="case-results">
+              <div class="result-item"><strong>100+</strong> Products imported</div>
+              <div class="result-item"><strong>3 days</strong> To first sale</div>
+            </div>
           </div>
         </div>
       </div>
