@@ -681,6 +681,22 @@
       border-radius: var(--radius-sm);
       background: #fafafa;
     }
+    .modal-body .form-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .modal-body .form-fallback a {
+      color: var(--orange-600);
+      font-weight: 600;
+    }
+    .modal-body .form-fallback a:hover {
+      text-decoration: underline;
+    }
 
     @media (max-width: 992px) {
       .hero-grid {
@@ -867,7 +883,7 @@
         <p class="section-desc">Real projects with measurable results.</p>
       </div>
       <div class="cases-grid">
-        <div class="case-card">
+        <a class="case-card" href="https://lapi-byrkyuir.myshopify.com/" target="_blank" rel="noopener" style="display:block;">
           <div class="case-thumb">
             📚
             <span class="case-tag">Migration</span>
@@ -881,8 +897,8 @@
               <div class="result-item"><strong>32%</strong> Faster load time</div>
             </div>
           </div>
-        </div>
-        <div class="case-card">
+        </a>
+        <a class="case-card" href="https://lapi-hkaqrjsq.myshopify.com/" target="_blank" rel="noopener" style="display:block;">
           <div class="case-thumb">
             🐕
             <span class="case-tag">Customization</span>
@@ -896,8 +912,8 @@
               <div class="result-item"><strong>40%</strong> Lower bounce rate</div>
             </div>
           </div>
-        </div>
-        <div class="case-card">
+        </a>
+        <a class="case-card" href="https://lapi-ouh7uf6x.myshopify.com/" target="_blank" rel="noopener" style="display:block;">
           <div class="case-thumb">
             🚗
             <span class="case-tag">Full Setup</span>
@@ -911,8 +927,8 @@
               <div class="result-item"><strong>19%</strong> Higher AOV</div>
             </div>
           </div>
-        </div>
-        <div class="case-card">
+        </a>
+        <a class="case-card" href="https://lapi-pyaftude.myshopify.com/" target="_blank" rel="noopener" style="display:block;">
           <div class="case-thumb">
             🏠
             <span class="case-tag">Launch</span>
@@ -926,7 +942,7 @@
               <div class="result-item"><strong>3 days</strong> To first sale</div>
             </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </section>
@@ -975,12 +991,10 @@
         <div class="contact-form">
           <h4>Send a message</h4>
           <p class="sub">I'll reply within 24 hours.</p>
-          <form action="https://formspree.io/f/xyeygbby" method="POST">
-            <div class="form-group"><label for="name">Your name</label><input type="text" id="name" name="name" required /></div>
-            <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" required /></div>
-            <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
-            <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">Send message <span>→</span></button>
-          </form>
+          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfmUC3_qlUhgTBTXaDyzR0OcqxroumDqlCQk1Ik1pr3u4vmfw/viewform?embedded=true" style="width:100%;height:520px;border:none;border-radius:var(--radius-sm);background:#fafafa;">Loading…</iframe>
+          <div class="form-fallback" style="margin-top:12px;">
+            Form not loading? <a href="https://docs.google.com/forms/d/e/1FAIpQLSfmUC3_qlUhgTBTXaDyzR0OcqxroumDqlCQk1Ik1pr3u4vmfw/viewform?usp=header" target="_blank" rel="noopener">Open it in a new tab ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -996,6 +1010,9 @@
         <h2>📋 Start your project</h2>
         <p class="sub">Fill in the form and I'll get back to you within 24 hours.</p>
         <iframe id="formIframe" src="https://docs.google.com/forms/d/e/1FAIpQLSfmUC3_qlUhgTBTXaDyzR0OcqxroumDqlCQk1Ik1pr3u4vmfw/viewform?embedded=true" frameborder="0">Loading…</iframe>
+        <div class="form-fallback">
+          Form not loading? <a href="https://docs.google.com/forms/d/e/1FAIpQLSfmUC3_qlUhgTBTXaDyzR0OcqxroumDqlCQk1Ik1pr3u4vmfw/viewform?usp=header" target="_blank" rel="noopener">Open it in a new tab ↗</a>
+        </div>
       </div>
     </div>
   </div>
