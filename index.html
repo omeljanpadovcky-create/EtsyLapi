@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -83,6 +83,12 @@
 
     .section-title span {
       color: var(--orange-500);
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 560px;
     }
 
     /* ─── NAV ─── */
@@ -270,12 +276,113 @@
       letter-spacing: 0.04em;
     }
 
-    /* ─── ABOUT ─── */
-    #about {
-      padding: 80px 0;
+    /* ─── PRICING CARDS ─── */
+    #pricing {
+      padding: 80px 0 60px;
       background: #fff;
       border-top: 1px solid var(--border-light);
       border-bottom: 1px solid var(--border-light);
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .pricing-card {
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--orange-500);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--orange-200);
+      box-shadow: var(--shadow-md);
+    }
+    .pricing-card:hover::before {
+      opacity: 1;
+    }
+    .pricing-card .card-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--orange-600);
+      background: var(--orange-50);
+      padding: 2px 14px;
+      border-radius: 100px;
+      display: inline-block;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+    .pricing-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .pricing-card .desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      flex: 1;
+    }
+    .pricing-card .price {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--orange-600);
+      margin-bottom: 20px;
+    }
+    .pricing-card .price small {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+    .btn-select {
+      background: var(--orange-500);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s;
+      width: 100%;
+      font-family: inherit;
+    }
+    .btn-select:hover {
+      background: var(--orange-600);
+      transform: translateY(-2px);
+    }
+
+    /* ─── ABOUT ─── */
+    #about {
+      padding: 80px 0;
     }
     .about-grid {
       display: grid;
@@ -330,6 +437,7 @@
     #contact {
       padding: 80px 0;
       background: #fff;
+      border-top: 1px solid var(--border-light);
     }
     .contact-grid {
       display: grid;
@@ -457,14 +565,13 @@
     .modal-container {
       background: #fff;
       border-radius: var(--radius);
-      max-width: 800px;
+      max-width: 600px;
       width: 100%;
       max-height: 90vh;
-      overflow: hidden;
+      overflow-y: auto;
       box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
       position: relative;
-      display: flex;
-      flex-direction: column;
+      padding: 32px 28px;
     }
     .modal-close {
       position: absolute;
@@ -475,37 +582,72 @@
       font-size: 28px;
       color: var(--text-muted);
       cursor: pointer;
-      z-index: 10;
       transition: color 0.2s;
       line-height: 1;
     }
     .modal-close:hover {
       color: var(--text-primary);
     }
-    .modal-body {
-      padding: 32px 28px;
-      overflow-y: auto;
-      flex: 1;
-    }
-    .modal-body h2 {
+    .modal-container h2 {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1.4rem;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
-    .modal-body .sub {
+    .modal-container .sub {
       color: var(--text-secondary);
       margin-bottom: 20px;
       font-size: 0.95rem;
     }
-    .modal-body iframe {
+    .modal-container .form-group {
+      margin-bottom: 16px;
+    }
+    .modal-container .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--text-secondary);
+    }
+    .modal-container .form-group input,
+    .modal-container .form-group textarea,
+    .modal-container .form-group select {
       width: 100%;
-      height: 600px;
-      border: none;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border-light);
       border-radius: var(--radius-sm);
-      background: #fafafa;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: #fff;
+      transition: border-color 0.2s;
+      color: var(--text-primary);
+    }
+    .modal-container .form-group input:focus,
+    .modal-container .form-group textarea:focus,
+    .modal-container .form-group select:focus {
+      outline: none;
+      border-color: var(--orange-400);
+      box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.08);
+    }
+    .modal-container .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .modal-container .btn-primary {
+      width: 100%;
+      justify-content: center;
+    }
+    .modal-success {
+      display: none;
+      text-align: center;
+      color: var(--orange-600);
+      font-weight: 600;
+      margin-top: 16px;
     }
 
     @media (max-width: 992px) {
+      .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
       .hero-grid {
         grid-template-columns: 1fr;
         text-align: center;
@@ -557,11 +699,13 @@
       .section-title {
         font-size: 1.8rem;
       }
-      .modal-body iframe {
-        height: 480px;
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
       }
-      .modal-body {
-        padding: 20px 16px;
+      .modal-container {
+        padding: 24px 16px;
       }
     }
 
@@ -577,9 +721,6 @@
       .section-title {
         font-size: 1.5rem;
       }
-      .modal-body iframe {
-        height: 400px;
-      }
     }
   </style>
 </head>
@@ -593,6 +734,7 @@
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
+        <li><a href="#pricing">Services</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a class="nav-cta" id="navCta">Let's talk</a></li>
@@ -609,7 +751,7 @@
           <h1>Build, migrate &amp; scale<br /><span class="highlight">with confidence</span></h1>
           <p>I help brands move from Etsy to Shopify, customize themes, and optimise stores for conversion.</p>
           <div class="hero-actions">
-            <a href="#contact" class="btn-primary">Let's talk <span>→</span></a>
+            <a href="#pricing" class="btn-primary">View packages <span>→</span></a>
             <a href="#about" class="btn-secondary">Learn more</a>
           </div>
           <div class="hero-stats">
@@ -624,6 +766,61 @@
             <h4 style="font-family:'Space Grotesk',sans-serif;margin-top:8px;">Etsy → Shopify</h4>
             <p style="color:var(--text-secondary);font-size:0.9rem;">Seamless migration with zero downtime</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PRICING (CARDS) ─── -->
+  <section id="pricing">
+    <div class="container">
+      <div class="pricing-header">
+        <span class="section-label">Packages</span>
+        <h2 class="section-title">Choose your <span>plan</span></h2>
+        <p class="section-desc">From consultation to full migration — pick what fits your business.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <span class="card-tag">Free</span>
+          <h3>Consultation</h3>
+          <p class="desc">15 min. We review your Etsy shop, calculate savings, plan the migration.</p>
+          <div class="price">Free</div>
+          <button class="btn-select" data-package="Consultation">Select</button>
+        </div>
+        <div class="pricing-card">
+          <span class="card-tag">Starter</span>
+          <h3>Mini Migration</h3>
+          <p class="desc">Up to 20 products. Import from Etsy, basic design, payments, shipping.</p>
+          <div class="price">$199</div>
+          <button class="btn-select" data-package="Mini Migration">Select</button>
+        </div>
+        <div class="pricing-card">
+          <span class="card-tag">Most Popular</span>
+          <h3>Full Migration</h3>
+          <p class="desc">Up to 100 products. Custom design, SEO, email setup, integrations. Etsy stays active.</p>
+          <div class="price">$349</div>
+          <button class="btn-select" data-package="Full Migration">Select</button>
+        </div>
+        <div class="pricing-card">
+          <span class="card-tag">Premium</span>
+          <h3>Premium + Support</h3>
+          <p class="desc">Unlimited products. Unique design, 3 months support, ad integrations, priority response.</p>
+          <div class="price">$499</div>
+          <button class="btn-select" data-package="Premium + Support">Select</button>
+        </div>
+        <div class="pricing-card">
+          <span class="card-tag">Growth</span>
+          <h3>Migration + Marketing</h3>
+          <p class="desc">Full migration + Google Ads setup, Facebook Pixel, email marketing, performance tracking.</p>
+          <div class="price">$799</div>
+          <button class="btn-select" data-package="Migration + Marketing">Select</button>
+        </div>
+        <div class="pricing-card">
+          <span class="card-tag">Ongoing</span>
+          <h3>Monthly Support</h3>
+          <p class="desc">Technical help, updates &amp; fixes, optimization, priority chat, weekly reports.</p>
+          <div class="price">$150 <small>/mo</small></div>
+          <button class="btn-select" data-package="Monthly Support">Select</button>
         </div>
       </div>
     </div>
@@ -686,15 +883,40 @@
 
   <footer>© 2026 <a href="#">Lapi</a> · Shopify Developer · Ukraine</footer>
 
-  <!-- ─── MODAL (Google Form) ─── -->
+  <!-- ─── MODAL (замість Google Form) ─── -->
   <div class="modal-overlay" id="formModal">
     <div class="modal-container">
       <button class="modal-close" id="modalClose">✕</button>
-      <div class="modal-body">
-        <h2>📋 Start your project</h2>
-        <p class="sub">Fill in the form and I'll get back to you within 24 hours.</p>
-        <iframe id="formIframe" src="https://docs.google.com/forms/d/e/1rcTN_hQ9OXAloyxguB2f0iCRDyTFnhd4gYAME8HaHq4/viewform?embedded=true" frameborder="0">Loading…</iframe>
-      </div>
+      <h2>📋 Start your project</h2>
+      <p class="sub">Fill in the form and I'll get back to you within 24 hours.</p>
+      <form id="modalForm" action="https://formspree.io/f/xyeygbby" method="POST">
+        <div class="form-group">
+          <label for="modalName">Your name</label>
+          <input type="text" id="modalName" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="modalEmail">Email</label>
+          <input type="email" id="modalEmail" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="modalPackage">Package of interest (optional)</label>
+          <select id="modalPackage" name="package">
+            <option value="">Select a package…</option>
+            <option value="Consultation">Consultation</option>
+            <option value="Mini Migration">Mini Migration</option>
+            <option value="Full Migration">Full Migration</option>
+            <option value="Premium + Support">Premium + Support</option>
+            <option value="Migration + Marketing">Migration + Marketing</option>
+            <option value="Monthly Support">Monthly Support</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="modalMessage">Message</label>
+          <textarea id="modalMessage" name="message" placeholder="Tell me about your store…" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Send message <span>→</span></button>
+        <div class="modal-success" id="modalSuccess">✅ Message sent! I'll contact you shortly.</div>
+      </form>
     </div>
   </div>
 
@@ -703,12 +925,13 @@
     // ── Modal logic ──
     const modal = document.getElementById('formModal');
     const modalClose = document.getElementById('modalClose');
-    const formIframe = document.getElementById('formIframe');
+    const modalForm = document.getElementById('modalForm');
+    const modalSuccess = document.getElementById('modalSuccess');
 
     function openModal() {
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
-      formIframe.src = formIframe.src;
+      modalSuccess.style.display = 'none'; // hide previous success
     }
 
     function closeModal() {
@@ -724,13 +947,51 @@
       if (e.key === 'Escape') closeModal();
     });
 
-    // ── Open modal from nav CTA ──
+    // ── All "Select" buttons open modal ──
+    document.querySelectorAll('.btn-select').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const pkg = btn.dataset.package || '';
+        // Pre-select the package in the dropdown
+        const select = document.getElementById('modalPackage');
+        if (pkg) {
+          for (let opt of select.options) {
+            if (opt.text === pkg) {
+              select.value = opt.value;
+              break;
+            }
+          }
+        }
+        openModal();
+      });
+    });
+
+    // ── Nav CTA opens modal ──
     document.getElementById('navCta').addEventListener('click', openModal);
 
-    // ── Open modal from Hero button "Let's talk" ──
-    document.querySelector('.hero-actions .btn-primary').addEventListener('click', function(e) {
+    // ── Hero "View packages" already links to #pricing, but we can also add a click to open modal from a button? Already handled.
+
+    // ── Form submission via AJAX (to show success without page reload) ──
+    modalForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      openModal();
+      const formData = new FormData(modalForm);
+      try {
+        const res = await fetch(modalForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          modalSuccess.style.display = 'block';
+          modalForm.reset();
+          setTimeout(() => {
+            closeModal();
+          }, 3000);
+        } else {
+          alert('Something went wrong. Please try again or email me directly.');
+        }
+      } catch (err) {
+        alert('Network error. Please check your connection.');
+      }
     });
 
     // ── Hamburger ──
