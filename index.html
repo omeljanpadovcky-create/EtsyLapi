@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lapi · Shopify & E‑commerce Professional</title>
+  <title>Lapi · Shopify & E‑commerce</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* ─── RESET & BASE ─── */
     *,
     *::before,
     *::after {
@@ -26,16 +25,12 @@
       --orange-500: #f97316;
       --orange-600: #ea580c;
       --orange-700: #c2410c;
-      --orange-800: #9a3412;
-      --orange-900: #7c2d12;
-
       --bg: #fefcf9;
       --bg-card: #ffffff;
       --text-primary: #1c1917;
       --text-secondary: #57534e;
       --text-muted: #a8a29e;
       --border-light: #f0ebe6;
-      --shadow-sm: 0 2px 8px rgba(200, 100, 20, 0.08);
       --shadow-md: 0 12px 40px rgba(200, 100, 20, 0.12);
       --radius: 16px;
       --radius-sm: 10px;
@@ -46,7 +41,7 @@
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text-primary);
       line-height: 1.6;
@@ -64,7 +59,6 @@
       padding: 0 24px;
     }
 
-    /* ─── SECTION HEADERS ─── */
     .section-label {
       display: inline-block;
       font-size: 0.7rem;
@@ -119,9 +113,7 @@
       font-weight: 700;
       font-size: 1.3rem;
       color: var(--orange-600);
-      letter-spacing: -0.02em;
     }
-
     .logo span {
       color: var(--text-primary);
     }
@@ -133,67 +125,41 @@
       font-size: 0.85rem;
       font-weight: 500;
     }
-
     .nav-links a {
       color: var(--text-secondary);
       transition: color 0.2s;
-      position: relative;
     }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--orange-500);
-      transition: width 0.3s ease;
-    }
-
     .nav-links a:hover {
       color: var(--text-primary);
     }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
     .nav-cta {
       background: var(--orange-500);
       color: #fff !important;
       padding: 8px 20px;
       border-radius: 100px;
       font-weight: 600;
-      transition: background 0.2s, transform 0.2s;
+      transition: background 0.2s;
+      cursor: pointer;
     }
-
-    .nav-cta::after {
-      display: none !important;
-    }
-
     .nav-cta:hover {
       background: var(--orange-600) !important;
-      transform: translateY(-2px);
     }
 
     .hamburger {
       display: none;
       flex-direction: column;
       gap: 5px;
-      cursor: pointer;
       background: none;
       border: none;
       padding: 4px;
+      cursor: pointer;
     }
-
     .hamburger span {
       display: block;
       width: 24px;
       height: 2px;
       background: var(--text-primary);
       border-radius: 2px;
-      transition: 0.3s;
     }
 
     /* ─── HERO ─── */
@@ -202,7 +168,6 @@
       position: relative;
       overflow: hidden;
     }
-
     #hero::before {
       content: '';
       position: absolute;
@@ -213,7 +178,6 @@
       background: radial-gradient(circle, rgba(249, 115, 22, 0.08) 0%, transparent 70%);
       pointer-events: none;
     }
-
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -222,7 +186,6 @@
       position: relative;
       z-index: 1;
     }
-
     .hero-content .badge {
       display: inline-block;
       background: var(--orange-100);
@@ -235,7 +198,6 @@
       border-radius: 100px;
       margin-bottom: 16px;
     }
-
     .hero-content h1 {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 3.2rem;
@@ -244,25 +206,20 @@
       line-height: 1.1;
       margin-bottom: 16px;
     }
-
     .hero-content h1 .highlight {
       color: var(--orange-500);
-      position: relative;
     }
-
     .hero-content p {
       font-size: 1.1rem;
       color: var(--text-secondary);
       max-width: 480px;
       margin-bottom: 28px;
     }
-
     .hero-actions {
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
     }
-
     .btn-primary {
       display: inline-flex;
       align-items: center;
@@ -275,16 +232,13 @@
       font-size: 0.95rem;
       border: none;
       cursor: pointer;
-      transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+      transition: background 0.25s, transform 0.25s;
       box-shadow: 0 4px 16px rgba(249, 115, 22, 0.25);
     }
-
     .btn-primary:hover {
       background: var(--orange-600);
       transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(249, 115, 22, 0.35);
     }
-
     .btn-secondary {
       display: inline-flex;
       align-items: center;
@@ -297,14 +251,11 @@
       font-size: 0.95rem;
       border: 1.5px solid var(--border-light);
       cursor: pointer;
-      transition: border-color 0.25s, background 0.25s;
+      transition: border-color 0.25s;
     }
-
     .btn-secondary:hover {
       border-color: var(--orange-400);
-      background: var(--orange-50);
     }
-
     .hero-stats {
       display: flex;
       gap: 40px;
@@ -312,19 +263,12 @@
       padding-top: 28px;
       border-top: 1px solid var(--border-light);
     }
-
-    .hero-stats .stat {
-      display: flex;
-      flex-direction: column;
-    }
-
     .hero-stats .stat .num {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1.6rem;
       font-weight: 700;
       color: var(--orange-600);
     }
-
     .hero-stats .stat .label {
       font-size: 0.8rem;
       color: var(--text-muted);
@@ -332,133 +276,39 @@
       letter-spacing: 0.04em;
     }
 
-    /* Hero visual */
-    .hero-visual {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .hero-visual .orb {
-      width: 320px;
-      height: 320px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, var(--orange-300), var(--orange-600));
-      opacity: 0.15;
-      position: absolute;
-      animation: pulse 6s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%,
-      100% {
-        transform: scale(1);
-        opacity: 0.15;
-      }
-      50% {
-        transform: scale(1.1);
-        opacity: 0.25;
-      }
-    }
-
-    .hero-visual .card-stack {
-      position: relative;
-      width: 100%;
-      max-width: 400px;
-      aspect-ratio: 4/3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-visual .card-stack .card-item {
-      position: absolute;
-      background: #fff;
-      border-radius: var(--radius-sm);
-      padding: 20px 24px;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border-light);
-      width: 80%;
-      transition: transform 0.4s ease;
-    }
-
-    .hero-visual .card-stack .card-item:nth-child(1) {
-      transform: rotate(-6deg) translateY(-20px) translateX(-10px);
-      z-index: 3;
-    }
-    .hero-visual .card-stack .card-item:nth-child(2) {
-      transform: rotate(4deg) translateY(10px) translateX(8px);
-      z-index: 2;
-    }
-    .hero-visual .card-stack .card-item:nth-child(3) {
-      transform: rotate(-2deg) translateY(30px) translateX(-6px);
-      z-index: 1;
-    }
-
-    .hero-visual .card-item .chip {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--orange-600);
-    }
-
-    .hero-visual .card-item .chip .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--orange-500);
-    }
-
-    .hero-visual .card-item .line {
-      height: 4px;
-      width: 60%;
-      background: var(--orange-100);
-      border-radius: 4px;
-      margin: 10px 0 6px;
-    }
-
-    .hero-visual .card-item .line.short {
-      width: 30%;
-    }
-
-    /* ─── SERVICES ─── */
-    #services {
+    /* ─── PRICING CARDS ─── */
+    #pricing {
       padding: 80px 0;
       background: #fff;
       border-top: 1px solid var(--border-light);
       border-bottom: 1px solid var(--border-light);
     }
-
-    .services-header {
+    .pricing-header {
       text-align: center;
       margin-bottom: 48px;
     }
-
-    .services-header .section-desc {
+    .pricing-header .section-desc {
       margin: 0 auto;
     }
 
-    .services-grid {
+    .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
     }
 
-    .service-card {
+    .pricing-card {
       background: var(--bg);
       border: 1px solid var(--border-light);
       border-radius: var(--radius);
       padding: 32px 28px;
       transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: default;
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
-
-    .service-card::before {
+    .pricing-card::before {
       content: '';
       position: absolute;
       top: 0;
@@ -469,184 +319,90 @@
       opacity: 0;
       transition: opacity 0.3s;
     }
-
-    .service-card:hover {
+    .pricing-card:hover {
       transform: translateY(-8px);
       border-color: var(--orange-200);
       box-shadow: var(--shadow-md);
     }
-
-    .service-card:hover::before {
+    .pricing-card:hover::before {
       opacity: 1;
     }
-
-    .service-card .icon-wrap {
-      width: 52px;
-      height: 52px;
-      border-radius: 12px;
-      background: var(--orange-100);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 16px;
-      color: var(--orange-600);
-    }
-
-    .service-card h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.15rem;
+    .pricing-card .card-tag {
+      font-size: 0.65rem;
       font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .service-card p {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    .service-card .tag {
-      display: inline-block;
-      margin-top: 14px;
-      font-size: 0.7rem;
-      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
       color: var(--orange-600);
       background: var(--orange-50);
       padding: 2px 14px;
       border-radius: 100px;
+      display: inline-block;
+      margin-bottom: 12px;
+      width: fit-content;
     }
-
-    /* ─── PORTFOLIO ─── */
-    #portfolio {
-      padding: 80px 0;
+    .pricing-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
-
-    .portfolio-header {
-      text-align: center;
-      margin-bottom: 48px;
+    .pricing-card .desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      flex: 1;
     }
-
-    .portfolio-header .section-desc {
-      margin: 0 auto;
+    .pricing-card .price {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--orange-600);
+      margin-bottom: 20px;
     }
-
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 28px;
+    .pricing-card .price small {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--text-muted);
     }
-
-    .portfolio-item {
-      background: #fff;
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--border-light);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      display: block;
-      color: inherit;
-    }
-
-    .portfolio-item:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--orange-200);
-    }
-
-    .portfolio-item .thumb {
-      height: 180px;
-      background: var(--orange-50);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      color: var(--orange-400);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .portfolio-item .thumb .overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(249, 115, 22, 0.06);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .portfolio-item:hover .thumb .overlay {
-      opacity: 1;
-    }
-
-    .portfolio-item .thumb .overlay span {
+    .btn-select {
       background: var(--orange-500);
       color: #fff;
-      padding: 6px 18px;
+      border: none;
+      padding: 12px 24px;
       border-radius: 100px;
-      font-size: 0.75rem;
       font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s;
+      width: 100%;
+      font-family: inherit;
     }
-
-    .portfolio-item .info {
-      padding: 20px 24px 24px;
-    }
-
-    .portfolio-item .info .type {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--orange-500);
-      font-weight: 600;
-    }
-
-    .portfolio-item .info h4 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin: 4px 0 6px;
-    }
-
-    .portfolio-item .info p {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
+    .btn-select:hover {
+      background: var(--orange-600);
+      transform: translateY(-2px);
     }
 
     /* ─── ABOUT ─── */
     #about {
       padding: 80px 0;
-      background: #fff;
-      border-top: 1px solid var(--border-light);
-      border-bottom: 1px solid var(--border-light);
     }
-
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 60px;
       align-items: center;
     }
-
-    .about-text .section-title {
-      margin-bottom: 16px;
-    }
-
     .about-text p {
       color: var(--text-secondary);
       margin-bottom: 16px;
       font-size: 1rem;
     }
-
     .about-text .skills-list {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 20px;
     }
-
     .about-text .skills-list span {
       background: var(--orange-50);
       border: 1px solid var(--orange-100);
@@ -656,116 +412,27 @@
       font-weight: 500;
       color: var(--orange-700);
     }
-
-    .about-visual {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
     .about-visual .box {
       background: var(--orange-50);
       border: 2px solid var(--orange-200);
       border-radius: var(--radius);
       padding: 40px 36px;
       text-align: center;
-      width: 100%;
       max-width: 380px;
     }
-
     .about-visual .box .emoji {
       font-size: 3.6rem;
       display: block;
       margin-bottom: 12px;
     }
-
     .about-visual .box h4 {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
       font-size: 1.2rem;
     }
-
     .about-visual .box p {
       font-size: 0.9rem;
       color: var(--text-secondary);
-      margin-top: 6px;
-    }
-
-    /* ─── TESTIMONIALS ─── */
-    #testimonials {
-      padding: 80px 0;
-    }
-
-    .testimonials-header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .testimonials-header .section-desc {
-      margin: 0 auto;
-    }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .testimonial-card {
-      background: #fff;
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-      transition: all 0.3s;
-    }
-
-    .testimonial-card:hover {
-      border-color: var(--orange-200);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .testimonial-card .stars {
-      color: var(--orange-400);
-      font-size: 0.9rem;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-    }
-
-    .testimonial-card blockquote {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      font-style: italic;
-      margin-bottom: 14px;
-    }
-
-    .testimonial-card .author {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .testimonial-card .author .avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--orange-100);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      color: var(--orange-700);
-      font-size: 0.9rem;
-    }
-
-    .testimonial-card .author .name {
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    .testimonial-card .author .role {
-      font-size: 0.75rem;
-      color: var(--text-muted);
     }
 
     /* ─── CONTACT ─── */
@@ -774,23 +441,12 @@
       background: #fff;
       border-top: 1px solid var(--border-light);
     }
-
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 48px;
       align-items: start;
     }
-
-    .contact-info .section-title {
-      margin-bottom: 12px;
-    }
-
-    .contact-info p {
-      color: var(--text-secondary);
-      margin-bottom: 24px;
-    }
-
     .contact-item {
       display: flex;
       align-items: center;
@@ -798,11 +454,9 @@
       padding: 12px 0;
       border-bottom: 1px solid var(--border-light);
     }
-
     .contact-item:last-child {
       border-bottom: none;
     }
-
     .contact-item .icon {
       width: 40px;
       height: 40px;
@@ -815,40 +469,33 @@
       font-size: 1.1rem;
       flex-shrink: 0;
     }
-
     .contact-item .detail {
       font-weight: 500;
     }
-
     .contact-item .sub {
       font-size: 0.8rem;
       color: var(--text-muted);
     }
-
     .contact-form {
       background: var(--bg);
       border: 1px solid var(--border-light);
       border-radius: var(--radius);
       padding: 32px;
     }
-
     .contact-form h4 {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
       font-size: 1.1rem;
       margin-bottom: 4px;
     }
-
     .contact-form .sub {
       font-size: 0.85rem;
       color: var(--text-muted);
       margin-bottom: 20px;
     }
-
     .contact-form .form-group {
       margin-bottom: 16px;
     }
-
     .contact-form .form-group label {
       display: block;
       font-size: 0.8rem;
@@ -856,7 +503,6 @@
       margin-bottom: 4px;
       color: var(--text-secondary);
     }
-
     .contact-form .form-group input,
     .contact-form .form-group textarea {
       width: 100%;
@@ -866,28 +512,20 @@
       font-family: inherit;
       font-size: 0.95rem;
       background: #fff;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: border-color 0.2s;
       color: var(--text-primary);
     }
-
     .contact-form .form-group input:focus,
     .contact-form .form-group textarea:focus {
       outline: none;
       border-color: var(--orange-400);
       box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.08);
     }
-
     .contact-form .form-group textarea {
       resize: vertical;
       min-height: 100px;
     }
 
-    .contact-form .btn-primary {
-      width: 100%;
-      justify-content: center;
-    }
-
-    /* ─── FOOTER ─── */
     footer {
       padding: 32px 0 40px;
       text-align: center;
@@ -895,18 +533,90 @@
       color: var(--text-muted);
       border-top: 1px solid var(--border-light);
     }
-
     footer a {
       color: var(--orange-600);
       font-weight: 500;
     }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 992px) {
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
+    /* ─── MODAL ─── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 24px;
+      animation: fadeIn 0.25s ease;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.96);
       }
-      .testimonials-grid {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    .modal-container {
+      background: #fff;
+      border-radius: var(--radius);
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      background: none;
+      border: none;
+      font-size: 28px;
+      color: var(--text-muted);
+      cursor: pointer;
+      z-index: 10;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+    .modal-close:hover {
+      color: var(--text-primary);
+    }
+    .modal-body {
+      padding: 32px 28px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .modal-body h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+    }
+    .modal-body .sub {
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+    .modal-body iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: #fafafa;
+    }
+
+    @media (max-width: 992px) {
+      .pricing-grid {
         grid-template-columns: repeat(2, 1fr);
       }
       .hero-grid {
@@ -923,9 +633,6 @@
       .hero-stats {
         justify-content: center;
       }
-      .hero-visual .card-stack {
-        max-width: 300px;
-      }
       .about-grid {
         grid-template-columns: 1fr;
         text-align: center;
@@ -934,9 +641,6 @@
         justify-content: center;
       }
       .contact-grid {
-        grid-template-columns: 1fr;
-      }
-      .portfolio-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -959,10 +663,6 @@
         padding: 20px 24px;
         gap: 16px;
         border-bottom: 1px solid var(--border-light);
-        box-shadow: var(--shadow-sm);
-      }
-      .nav-links.open a {
-        font-size: 1rem;
       }
       .hero-content h1 {
         font-size: 2.4rem;
@@ -970,38 +670,20 @@
       .section-title {
         font-size: 1.8rem;
       }
-      .services-grid {
+      .pricing-grid {
         grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
       }
-      .testimonials-grid {
-        grid-template-columns: 1fr;
+      .modal-body iframe {
+        height: 480px;
       }
-      .hero-stats {
-        flex-wrap: wrap;
-        gap: 20px;
-      }
-      .hero-visual .card-stack .card-item {
-        padding: 14px 18px;
-        width: 90%;
-      }
-      .hero-visual .card-stack .card-item:nth-child(1) {
-        transform: rotate(-4deg) translateY(-12px) translateX(-6px);
-      }
-      .hero-visual .card-stack .card-item:nth-child(2) {
-        transform: rotate(3deg) translateY(6px) translateX(4px);
-      }
-      .hero-visual .card-stack .card-item:nth-child(3) {
-        transform: rotate(-1deg) translateY(18px) translateX(-3px);
-      }
-      .contact-form {
-        padding: 20px;
+      .modal-body {
+        padding: 20px 16px;
       }
     }
 
     @media (max-width: 480px) {
-      .container {
-        padding: 0 16px;
-      }
       .hero-content h1 {
         font-size: 1.9rem;
       }
@@ -1013,31 +695,9 @@
       .section-title {
         font-size: 1.5rem;
       }
-    }
-
-    /* ─── REVEAL ANIMATIONS ─── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal-delay-1 {
-      transition-delay: 0.1s;
-    }
-    .reveal-delay-2 {
-      transition-delay: 0.2s;
-    }
-    .reveal-delay-3 {
-      transition-delay: 0.3s;
-    }
-    .reveal-delay-4 {
-      transition-delay: 0.4s;
+      .modal-body iframe {
+        height: 400px;
+      }
     }
   </style>
 </head>
@@ -1047,15 +707,14 @@
   <nav class="navbar">
     <div class="container">
       <div class="logo">Lapi<span>.</span></div>
-      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+      <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#portfolio">Work</a></li>
+        <li><a href="#pricing">Services</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#contact" class="nav-cta">Let's talk</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a class="nav-cta" id="navCta">Let's talk</a></li>
       </ul>
     </div>
   </nav>
@@ -1066,169 +725,92 @@
       <div class="hero-grid">
         <div class="hero-content">
           <div class="badge">🚀 Shopify & E‑commerce Expert</div>
-          <h1>
-            Build, migrate &amp; scale<br />
-            <span class="highlight">with confidence</span>
-          </h1>
-          <p>
-            I help brands move from Etsy to Shopify, customize themes,
-            and optimise stores for conversion — so you can focus on
-            growing your business.
-          </p>
+          <h1>Build, migrate &amp; scale<br /><span class="highlight">with confidence</span></h1>
+          <p>I help brands move from Etsy to Shopify, customize themes, and optimise stores for conversion.</p>
           <div class="hero-actions">
-            <a href="#contact" class="btn-primary">Start a project <span>→</span></a>
-            <a href="#portfolio" class="btn-secondary">See my work</a>
+            <a href="#pricing" class="btn-primary">View packages <span>→</span></a>
+            <a href="#about" class="btn-secondary">Learn more</a>
           </div>
           <div class="hero-stats">
-            <div class="stat">
-              <span class="num">7+</span>
-              <span class="label">Stores launched</span>
-            </div>
-            <div class="stat">
-              <span class="num">100+</span>
-              <span class="label">Themes customized</span>
-            </div>
-            <div class="stat">
-              <span class="num">2 yrs</span>
-              <span class="label">Experience</span>
-            </div>
+            <div class="stat"><span class="num">7+</span><span class="label">Stores launched</span></div>
+            <div class="stat"><span class="num">100+</span><span class="label">Themes customized</span></div>
+            <div class="stat"><span class="num">2 yrs</span><span class="label">Experience</span></div>
           </div>
         </div>
-        <div class="hero-visual">
-          <div class="orb"></div>
-          <div class="card-stack">
-            <div class="card-item">
-              <div class="chip"><span class="dot"></span> Shopify Store</div>
-              <div class="line"></div>
-              <div class="line short"></div>
-              <div style="display:flex;gap:6px;margin-top:8px;">
-                <span style="width:20px;height:20px;border-radius:4px;background:var(--orange-200);"></span>
-                <span style="width:20px;height:20px;border-radius:4px;background:var(--orange-300);"></span>
-                <span style="width:20px;height:20px;border-radius:4px;background:var(--orange-400);"></span>
-              </div>
-            </div>
-            <div class="card-item">
-              <div class="chip"><span class="dot"></span> Etsy → Shopify</div>
-              <div class="line"></div>
-              <div class="line short"></div>
-              <div style="display:flex;gap:6px;margin-top:8px;">
-                <span style="width:20px;height:20px;border-radius:4px;background:var(--orange-100);"></span>
-                <span style="width:20px;height:20px;border-radius:4px;background:var(--orange-200);"></span>
-              </div>
-            </div>
-            <div class="card-item">
-              <div class="chip"><span class="dot"></span> Custom Theme</div>
-              <div class="line"></div>
-              <div class="line short"></div>
-            </div>
+        <div class="hero-visual" style="display:flex;align-items:center;justify-content:center;">
+          <div style="background:var(--orange-50);border:2px solid var(--orange-200);border-radius:var(--radius);padding:40px 32px;text-align:center;max-width:320px;width:100%;">
+            <div style="font-size:3rem;">🛒</div>
+            <h4 style="font-family:'Space Grotesk',sans-serif;margin-top:8px;">Etsy → Shopify</h4>
+            <p style="color:var(--text-secondary);font-size:0.9rem;">Seamless migration with zero downtime</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── SERVICES ─── -->
-  <section id="services">
+  <!-- ─── PRICING (CARDS) ─── -->
+  <section id="pricing">
     <div class="container">
-      <div class="services-header">
-        <span class="section-label">What I do</span>
-        <h2 class="section-title">Expert <span>services</span> for your store</h2>
-        <p class="section-desc">From migration to ongoing support — I cover the full Shopify lifecycle.</p>
+      <div class="pricing-header">
+        <span class="section-label">Packages</span>
+        <h2 class="section-title">Choose your <span>plan</span></h2>
+        <p class="section-desc">From consultation to full migration — pick what fits your business.</p>
       </div>
-      <div class="services-grid">
-        <div class="service-card reveal reveal-delay-1">
-          <div class="icon-wrap">📦</div>
-          <h3>Etsy → Shopify Migration</h3>
-          <p>Seamless product, customer &amp; order transfer with zero downtime. Keep your Etsy shop active while we move.</p>
-          <span class="tag">Most popular</span>
-        </div>
-        <div class="service-card reveal reveal-delay-2">
-          <div class="icon-wrap">🎨</div>
-          <h3>Theme Customization</h3>
-          <p>Tailor your store’s look &amp; feel to match your brand. Liquid edits, custom sections, and responsive design.</p>
-          <span class="tag">Liquid expert</span>
-        </div>
-        <div class="service-card reveal reveal-delay-3">
-          <div class="icon-wrap">⚡</div>
-          <h3>Conversion Optimization</h3>
-          <p>Improve load speed, checkout flow, and UX to turn more visitors into customers. Data-driven improvements.</p>
-          <span class="tag">ROI focused</span>
-        </div>
-        <div class="service-card reveal reveal-delay-1">
-          <div class="icon-wrap">🔌</div>
-          <h3>App Integrations</h3>
-          <p>Connect marketing, email, reviews, and analytics tools so your store works as a cohesive system.</p>
-          <span class="tag">20+ apps</span>
-        </div>
-        <div class="service-card reveal reveal-delay-2">
-          <div class="icon-wrap">📈</div>
-          <h3>Store Setup &amp; Launch</h3>
-          <p>From domain to checkout — I handle the full setup so you can start selling immediately.</p>
-          <span class="tag">Turnkey</span>
-        </div>
-        <div class="service-card reveal reveal-delay-3">
-          <div class="icon-wrap">🛡️</div>
-          <h3>Ongoing Support</h3>
-          <p>Monthly maintenance, updates, and priority support to keep your store running smoothly.</p>
-          <span class="tag">Peace of mind</span>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ─── PORTFOLIO ─── -->
-  <section id="portfolio">
-    <div class="container">
-      <div class="portfolio-header">
-        <span class="section-label">Selected work</span>
-        <h2 class="section-title">Stores I've <span>built &amp; improved</span></h2>
-        <p class="section-desc">Each project reflects a commitment to quality, speed, and brand alignment.</p>
-      </div>
-      <div class="portfolio-grid">
-        <a href="#" class="portfolio-item reveal reveal-delay-1">
-          <div class="thumb">
-            📚
-            <div class="overlay"><span>View project</span></div>
-          </div>
-          <div class="info">
-            <span class="type">Migration + Customization</span>
-            <h4>Lapi Books</h4>
-            <p>Online bookstore migrated from Etsy with a custom theme and integrated reviews.</p>
-          </div>
-        </a>
-        <a href="#" class="portfolio-item reveal reveal-delay-2">
-          <div class="thumb">
-            🐕
-            <div class="overlay"><span>View project</span></div>
-          </div>
-          <div class="info">
-            <span class="type">Full Store Setup</span>
-            <h4>Dog Care</h4>
-            <p>Pet‑tech store with dark theme, subscription integration, and optimized checkout.</p>
-          </div>
-        </a>
-        <a href="#" class="portfolio-item reveal reveal-delay-3">
-          <div class="thumb">
-            🚗
-            <div class="overlay"><span>View project</span></div>
-          </div>
-          <div class="info">
-            <span class="type">Theme Customization</span>
-            <h4>3D Car Parts</h4>
-            <p>Premium automotive store with advanced filtering, product variants, and speedy load.</p>
-          </div>
-        </a>
-        <a href="#" class="portfolio-item reveal reveal-delay-4">
-          <div class="thumb">
-            🏠
-            <div class="overlay"><span>View project</span></div>
-          </div>
-          <div class="info">
-            <span class="type">Store Setup</span>
-            <h4>Foyer Lapi</h4>
-            <p>Cozy home‑goods store with collections, blog, and email capture built in.</p>
-          </div>
-        </a>
+      <div class="pricing-grid">
+        <!-- Consultation -->
+        <div class="pricing-card">
+          <span class="card-tag">Free</span>
+          <h3>Consultation</h3>
+          <p class="desc">15 min. We review your Etsy shop, calculate savings, plan the migration.</p>
+          <div class="price">Free</div>
+          <button class="btn-select" data-package="Consultation">Select</button>
+        </div>
+
+        <!-- Mini Migration -->
+        <div class="pricing-card">
+          <span class="card-tag">Starter</span>
+          <h3>Mini Migration</h3>
+          <p class="desc">Up to 20 products. Import from Etsy, basic design, payments, shipping.</p>
+          <div class="price">$199</div>
+          <button class="btn-select" data-package="Mini Migration">Select</button>
+        </div>
+
+        <!-- Full Migration -->
+        <div class="pricing-card">
+          <span class="card-tag">Most Popular</span>
+          <h3>Full Migration</h3>
+          <p class="desc">Up to 100 products. Custom design, SEO, email setup, integrations. Etsy stays active.</p>
+          <div class="price">$349</div>
+          <button class="btn-select" data-package="Full Migration">Select</button>
+        </div>
+
+        <!-- Premium + Support -->
+        <div class="pricing-card">
+          <span class="card-tag">Premium</span>
+          <h3>Premium + Support</h3>
+          <p class="desc">Unlimited products. Unique design, 3 months support, ad integrations, priority response.</p>
+          <div class="price">$499</div>
+          <button class="btn-select" data-package="Premium + Support">Select</button>
+        </div>
+
+        <!-- Migration + Marketing -->
+        <div class="pricing-card">
+          <span class="card-tag">Growth</span>
+          <h3>Migration + Marketing</h3>
+          <p class="desc">Full migration + Google Ads setup, Facebook Pixel, email marketing, performance tracking.</p>
+          <div class="price">$799</div>
+          <button class="btn-select" data-package="Migration + Marketing">Select</button>
+        </div>
+
+        <!-- Monthly Support -->
+        <div class="pricing-card">
+          <span class="card-tag">Ongoing</span>
+          <h3>Monthly Support</h3>
+          <p class="desc">Technical help, updates &amp; fixes, optimization, priority chat, weekly reports.</p>
+          <div class="price">$150 <small>/mo</small></div>
+          <button class="btn-select" data-package="Monthly Support">Select</button>
+        </div>
       </div>
     </div>
   </section>
@@ -1240,24 +822,13 @@
         <div class="about-text">
           <span class="section-label">About me</span>
           <h2 class="section-title">Turning ideas into <span>working stores</span></h2>
-          <p>
-            I'm <strong>Omelian</strong> — a Shopify developer with a passion for helping brands
-            make the leap from Etsy to a fully‑fledged e‑commerce store.
-          </p>
-          <p>
-            I combine technical expertise in Liquid, HTML, CSS, and JavaScript with
-            a deep understanding of what drives conversions. Every store I build is
-            fast, beautiful, and built to sell.
-          </p>
+          <p>I'm <strong>Omelian</strong> — a Shopify developer with a passion for helping brands make the leap from Etsy to a fully‑fledged e‑commerce store.</p>
+          <p>I combine technical expertise in Liquid, HTML, CSS, and JavaScript with a deep understanding of what drives conversions.</p>
           <div class="skills-list">
-            <span>Shopify Liquid</span>
-            <span>Theme Customization</span>
-            <span>Online Store 2.0</span>
-            <span>HTML / CSS / JS</span>
-            <span>App Integration</span>
-            <span>Checkout Optimisation</span>
-            <span>SEO</span>
-            <span>Etsy Migration</span>
+            <span>Shopify Liquid</span><span>Theme Customization</span>
+            <span>Online Store 2.0</span><span>HTML / CSS / JS</span>
+            <span>App Integration</span><span>Checkout Optimisation</span>
+            <span>SEO</span><span>Etsy Migration</span>
           </div>
         </div>
         <div class="about-visual">
@@ -1265,48 +836,7 @@
             <span class="emoji">🧑‍💻</span>
             <h4>Omelian Padovsky</h4>
             <p>Shopify Developer · 2+ years · 7+ stores launched</p>
-            <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;font-size:1.4rem;">
-              <span>🇺🇦</span>
-              <span>🛒</span>
-              <span>⚡</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── TESTIMONIALS ─── -->
-  <section id="testimonials">
-    <div class="container">
-      <div class="testimonials-header">
-        <span class="section-label">Testimonials</span>
-        <h2 class="section-title">What clients <span>say</span></h2>
-        <p class="section-desc">Real feedback from real projects.</p>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card reveal reveal-delay-1">
-          <div class="stars">★★★★★</div>
-          <blockquote>“Omelian migrated our entire Etsy shop to Shopify in under a week. The store looks incredible and our sales have already increased.”</blockquote>
-          <div class="author">
-            <div class="avatar">A</div>
-            <div><div class="name">Anna</div><div class="role">Fashion &amp; Apparel</div></div>
-          </div>
-        </div>
-        <div class="testimonial-card reveal reveal-delay-2">
-          <div class="stars">★★★★★</div>
-          <blockquote>“The theme customisation was spot‑on. Our brand feels premium now, and the checkout flow is so smooth — customers love it.”</blockquote>
-          <div class="author">
-            <div class="avatar">M</div>
-            <div><div class="name">Mark</div><div class="role">Health &amp; Supplements</div></div>
-          </div>
-        </div>
-        <div class="testimonial-card reveal reveal-delay-3">
-          <div class="stars">★★★★★</div>
-          <blockquote>“Lapi helped us recover 34% of abandoned carts with a simple email flow. Huge impact on our bottom line.”</blockquote>
-          <div class="author">
-            <div class="avatar">V</div>
-            <div><div class="name">Vadim</div><div class="role">Baby Products</div></div>
+            <div style="margin-top:16px;font-size:1.8rem;">🇺🇦 🛒 ⚡</div>
           </div>
         </div>
       </div>
@@ -1320,110 +850,89 @@
         <div class="contact-info">
           <span class="section-label">Get in touch</span>
           <h2 class="section-title">Let's build <span>something great</span></h2>
-          <p>
-            Have a project in mind? Let's talk about how we can turn your
-            store into a high‑performing sales machine.
-          </p>
-          <div class="contact-item">
-            <div class="icon">📧</div>
-            <div>
-              <div class="detail">omeljanpadovcky@gmail.com</div>
-              <div class="sub">Email</div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="icon">💬</div>
-            <div>
-              <div class="detail"><a href="https://www.linkedin.com/in/omelian-padovsky-996565311/" target="_blank">LinkedIn</a></div>
-              <div class="sub">Connect with me</div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="icon">📷</div>
-            <div>
-              <div class="detail"><a href="https://www.instagram.com/omelian_3d" target="_blank">@omelian_3d</a></div>
-              <div class="sub">Instagram</div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="icon">💻</div>
-            <div>
-              <div class="detail"><a href="https://github.com/omeljanpadovcky-create" target="_blank">GitHub</a></div>
-              <div class="sub">Code &amp; projects</div>
-            </div>
-          </div>
+          <p>Have a project in mind? Let's talk about how we can turn your store into a high‑performing sales machine.</p>
+          <div class="contact-item"><div class="icon">📧</div><div><div class="detail">omeljanpadovcky@gmail.com</div><div class="sub">Email</div></div></div>
+          <div class="contact-item"><div class="icon">💬</div><div><div class="detail"><a href="https://www.linkedin.com/in/omelian-padovsky-996565311/" target="_blank">LinkedIn</a></div><div class="sub">Connect</div></div></div>
+          <div class="contact-item"><div class="icon">📷</div><div><div class="detail"><a href="https://www.instagram.com/omelian_3d" target="_blank">@omelian_3d</a></div><div class="sub">Instagram</div></div></div>
+          <div class="contact-item"><div class="icon">💻</div><div><div class="detail"><a href="https://github.com/omeljanpadovcky-create" target="_blank">GitHub</a></div><div class="sub">Code</div></div></div>
         </div>
         <div class="contact-form">
           <h4>Send a message</h4>
           <p class="sub">I'll reply within 24 hours.</p>
           <form action="https://formspree.io/f/xyeygbby" method="POST">
-            <div class="form-group">
-              <label for="name">Your name</label>
-              <input type="text" id="name" name="name" placeholder="Omelian" required />
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="you@example.com" required />
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="Tell me about your store…" required></textarea>
-            </div>
-            <button type="submit" class="btn-primary">Send message <span>→</span></button>
+            <div class="form-group"><label for="name">Your name</label><input type="text" id="name" name="name" required /></div>
+            <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" required /></div>
+            <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
+            <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">Send message <span>→</span></button>
           </form>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── FOOTER ─── -->
-  <footer>
-    <div class="container">
-      © 2026 <a href="#">Lapi</a> · Shopify Developer · Ukraine
-      <br style="display:block;margin-top:4px;" />
-      <span style="font-size:0.75rem;color:var(--text-muted);">
-        Built with 🧡 &amp; ☕
-      </span>
+  <footer>© 2026 <a href="#">Lapi</a> · Shopify Developer · Ukraine</footer>
+
+  <!-- ─── MODAL (Google Form) ─── -->
+  <div class="modal-overlay" id="formModal">
+    <div class="modal-container">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-body">
+        <h2>📋 Start your project</h2>
+        <p class="sub">Fill in the form and I'll get back to you within 24 hours.</p>
+        <iframe id="formIframe" src="https://docs.google.com/forms/d/e/1rcTN_hQ9OXAloyxguB2f0iCRDyTFnhd4gYAME8HaHq4/viewform?embedded=true" frameborder="0">Loading…</iframe>
+      </div>
     </div>
-  </footer>
+  </div>
 
   <!-- ─── SCRIPTS ─── -->
   <script>
-    // ── Hamburger toggle ──
+    // ── Modal logic ──
+    const modal = document.getElementById('formModal');
+    const modalClose = document.getElementById('modalClose');
+    const formIframe = document.getElementById('formIframe');
+
+    function openModal() {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      // Reload iframe to reset form
+      formIframe.src = formIframe.src;
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // ── All "Select" buttons open modal ──
+    document.querySelectorAll('.btn-select').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const pkg = btn.dataset.package || 'Package';
+        // Optionally pre-fill? Google Forms doesn't support simple URL params easily,
+        // but we can just open the modal.
+        openModal();
+      });
+    });
+
+    // ── Nav CTA opens modal ──
+    document.getElementById('navCta').addEventListener('click', openModal);
+
+    // ── Hamburger ──
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
-
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
-
-    // Close nav on link click (mobile)
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
     document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-      });
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
     });
 
-    // ── Scroll reveal ──
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px 0px -60px 0px',
-      threshold: 0.12
-    };
-
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.reveal').forEach(el => {
-      revealObserver.observe(el);
-    });
-
-    // ── Smooth anchor scroll ──
+    // ── Smooth scroll for nav links ──
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const target = document.querySelector(this.getAttribute('href'));
@@ -1433,23 +942,6 @@
         }
       });
     });
-
-    // ── Active nav highlight ──
-    const sections = document.querySelectorAll('section[id]');
-    const navLinksArray = document.querySelectorAll('.nav-links a:not(.nav-cta)');
-
-    const navObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          navLinksArray.forEach(link => {
-            link.style.color = link.getAttribute('href') === '#' + id ? 'var(--text-primary)' : 'var(--text-secondary)';
-          });
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
-
-    sections.forEach(section => navObserver.observe(section));
   </script>
 
 </body>
