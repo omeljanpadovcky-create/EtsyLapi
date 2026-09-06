@@ -1,89 +1,1456 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LAPI — Etsy to Shopify Migration</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js">
-// ===== 3D Tilt for Service Cards =====
-document.querySelectorAll('.service-card').forEach(card => {
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = (y - centerY) / 15;
-    const rotateY = (centerX - x) / 15;
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-    card.style.setProperty('--mouse-x', x + 'px');
-    card.style.setProperty('--mouse-y', y + 'px');
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-  });
-});
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lapi · Shopify & E‑commerce Professional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── RESET & BASE ─── */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-// ===== Checkout Modal =====
-const packages = {
-  'consultation': { name: 'Consultation', price: 'Free', features: ['15-min shop review','Fee calculation','Migration plan','Q&A session','No obligations'], note: 'Free forever.' },
-  'mini': { name: 'Mini Migration', price: '$199', features: ['Up to 20 products','Import from Etsy','Basic theme setup','Payments & shipping','1 revision'], note: 'One-time payment.' },
-  'full': { name: 'Full Migration', price: '$349', features: ['Up to 100 products','Custom design','SEO setup','Email integration','Etsy stays active'], note: 'One-time payment.' },
-  'premium': { name: 'Premium + Support', price: '$499', features: ['Unlimited products','Unique design','3 months support','Ad integrations','Priority response'], note: 'One-time payment.' },
-  'marketing': { name: 'Migration + Marketing', price: '$799', features: ['Full migration','Google Ads setup','Facebook Pixel','Email marketing','Performance tracking'], note: 'One-time payment.' },
-  'support': { name: 'Monthly Support', price: '$150/mo', features: ['Technical help','Updates & fixes','Optimization','Priority chat','Weekly reports'], note: 'Billed monthly. Cancel anytime.' }
-};
-function openModal(pkgKey) {
-  const pkg = packages[pkgKey] || packages['full'];
-  document.getElementById('modalPackageName').textContent = pkg.name;
-  document.getElementById('modalPrice').textContent = pkg.price;
-  document.getElementById('summaryName').textContent = pkg.name;
-  document.getElementById('summaryPrice').textContent = pkg.price.includes('/') ? pkg.price : (pkg.price === 'Free' ? '$0.00' : pkg.price + '.00');
-  document.getElementById('summaryTotal').textContent = 'USD ' + (pkg.price.includes('/') ? pkg.price : (pkg.price === 'Free' ? '$0.00' : pkg.price + '.00'));
-  const featList = document.getElementById('modalFeatures');
-  featList.innerHTML = pkg.features.map(f => '<li><span class="check-icon">✓</span> ' + f + '</li>').join('');
-  document.getElementById('modalNote').textContent = pkg.note;
-  document.getElementById('checkoutModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal() {
-  document.getElementById('checkoutModal').classList.remove('active');
-  document.body.style.overflow = '';
-}
-function openFormModal() {
-  document.getElementById('googleFormFrame').src = 'https://docs.google.com/forms/d/e/1rcTN_hQ9OXAloyxguB2f0iCRDyTFnhd4gYAME8HaHq4/viewform?embedded=true';
-  document.getElementById('formModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeFormModal() {
-  document.getElementById('formModal').classList.remove('active');
-  document.getElementById('googleFormFrame').src = '';
-  document.body.style.overflow = '';
-}
-document.getElementById('checkoutModal').addEventListener('click', (e) => { if(e.target === document.getElementById('checkoutModal')) closeModal(); });
-document.getElementById('formModal').addEventListener('click', (e) => { if(e.target === document.getElementById('formModal')) closeFormModal(); });
-function handlePayment(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('.pay-btn');
-  btn.textContent = 'Processing...';
-  btn.style.opacity = '0.7';
-  setTimeout(() => {
-    btn.textContent = '✓ Payment Simulated';
-    btn.style.background = 'linear-gradient(135deg,#4ade80,#22c55e)';
-    setTimeout(() => { closeModal(); btn.textContent = 'Pay now'; btn.style.background = ''; btn.style.opacity = '1'; e.target.reset(); }, 1500);
-  }, 1500);
-}
-</script>
+    :root {
+      --orange-50: #fff7ed;
+      --orange-100: #ffedd5;
+      --orange-200: #fed7aa;
+      --orange-300: #fdba74;
+      --orange-400: #fb923c;
+      --orange-500: #f97316;
+      --orange-600: #ea580c;
+      --orange-700: #c2410c;
+      --orange-800: #9a3412;
+      --orange-900: #7c2d12;
 
-<!-- ===== GOOGLE FORM MODAL ===== -->
-<div id="formModal" class="modal-overlay">
-  <div class="modal-container form-modal-container">
-    <button class="modal-close" onclick="closeFormModal()">✕</button>
-    <iframe id="googleFormFrame" src="" frameborder="0" allowfullscreen></iframe>
-  </div>
-</div>
+      --bg: #fefcf9;
+      --bg-card: #ffffff;
+      --text-primary: #1c1917;
+      --text-secondary: #57534e;
+      --text-muted: #a8a29e;
+      --border-light: #f0ebe6;
+      --shadow-sm: 0 2px 8px rgba(200, 100, 20, 0.08);
+      --shadow-md: 0 12px 40px rgba(200, 100, 20, 0.12);
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─── SECTION HEADERS ─── */
+    .section-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--orange-600);
+      background: var(--orange-100);
+      padding: 4px 16px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .section-title span {
+      color: var(--orange-500);
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+    }
+
+    /* ─── NAV ─── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(254, 252, 249, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-light);
+      padding: 12px 0;
+    }
+
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--orange-600);
+      letter-spacing: -0.02em;
+    }
+
+    .logo span {
+      color: var(--text-primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--orange-500);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: var(--orange-500);
+      color: #fff !important;
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--orange-600) !important;
+      transform: translateY(-2px);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      padding: 60px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content .badge {
+      display: inline-block;
+      background: var(--orange-100);
+      color: var(--orange-700);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 6px 18px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .hero-content h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .hero-content h1 .highlight {
+      color: var(--orange-500);
+      position: relative;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--orange-500);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+      box-shadow: 0 4px 16px rgba(249, 115, 22, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--orange-600);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(249, 115, 22, 0.35);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--text-primary);
+      padding: 14px 32px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1.5px solid var(--border-light);
+      cursor: pointer;
+      transition: border-color 0.25s, background 0.25s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--orange-400);
+      background: var(--orange-50);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .hero-stats .stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-stats .stat .num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--orange-600);
+    }
+
+    .hero-stats .stat .label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* Hero visual */
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-visual .orb {
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--orange-300), var(--orange-600));
+      opacity: 0.15;
+      position: absolute;
+      animation: pulse 6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.15;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.25;
+      }
+    }
+
+    .hero-visual .card-stack {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-visual .card-stack .card-item {
+      position: absolute;
+      background: #fff;
+      border-radius: var(--radius-sm);
+      padding: 20px 24px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-light);
+      width: 80%;
+      transition: transform 0.4s ease;
+    }
+
+    .hero-visual .card-stack .card-item:nth-child(1) {
+      transform: rotate(-6deg) translateY(-20px) translateX(-10px);
+      z-index: 3;
+    }
+    .hero-visual .card-stack .card-item:nth-child(2) {
+      transform: rotate(4deg) translateY(10px) translateX(8px);
+      z-index: 2;
+    }
+    .hero-visual .card-stack .card-item:nth-child(3) {
+      transform: rotate(-2deg) translateY(30px) translateX(-6px);
+      z-index: 1;
+    }
+
+    .hero-visual .card-item .chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--orange-600);
+    }
+
+    .hero-visual .card-item .chip .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--orange-500);
+    }
+
+    .hero-visual .card-item .line {
+      height: 4px;
+      width: 60%;
+      background: var(--orange-100);
+      border-radius: 4px;
+      margin: 10px 0 6px;
+    }
+
+    .hero-visual .card-item .line.short {
+      width: 30%;
+    }
+
+    /* ─── SERVICES ─── */
+    #services {
+      padding: 80px 0;
+      background: #fff;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .services-header .section-desc {
+      margin: 0 auto;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--orange-500);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--orange-200);
+      box-shadow: var(--shadow-md);
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-card .icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: var(--orange-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: var(--orange-600);
+    }
+
+    .service-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .service-card .tag {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--orange-600);
+      background: var(--orange-50);
+      padding: 2px 14px;
+      border-radius: 100px;
+    }
+
+    /* ─── PORTFOLIO ─── */
+    #portfolio {
+      padding: 80px 0;
+    }
+
+    .portfolio-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .portfolio-header .section-desc {
+      margin: 0 auto;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .portfolio-item {
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: block;
+      color: inherit;
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--orange-200);
+    }
+
+    .portfolio-item .thumb {
+      height: 180px;
+      background: var(--orange-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--orange-400);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portfolio-item .thumb .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(249, 115, 22, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .portfolio-item:hover .thumb .overlay {
+      opacity: 1;
+    }
+
+    .portfolio-item .thumb .overlay span {
+      background: var(--orange-500);
+      color: #fff;
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .portfolio-item .info {
+      padding: 20px 24px 24px;
+    }
+
+    .portfolio-item .info .type {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--orange-500);
+      font-weight: 600;
+    }
+
+    .portfolio-item .info h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 4px 0 6px;
+    }
+
+    .portfolio-item .info p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* ─── ABOUT ─── */
+    #about {
+      padding: 80px 0;
+      background: #fff;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-text .section-title {
+      margin-bottom: 16px;
+    }
+
+    .about-text p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-size: 1rem;
+    }
+
+    .about-text .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .about-text .skills-list span {
+      background: var(--orange-50);
+      border: 1px solid var(--orange-100);
+      padding: 4px 16px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--orange-700);
+    }
+
+    .about-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-visual .box {
+      background: var(--orange-50);
+      border: 2px solid var(--orange-200);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      text-align: center;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .about-visual .box .emoji {
+      font-size: 3.6rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .about-visual .box h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .about-visual .box p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-top: 6px;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    #testimonials {
+      padding: 80px 0;
+    }
+
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .testimonials-header .section-desc {
+      margin: 0 auto;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: all 0.3s;
+    }
+
+    .testimonial-card:hover {
+      border-color: var(--orange-200);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .testimonial-card .stars {
+      color: var(--orange-400);
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .testimonial-card blockquote {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: 14px;
+    }
+
+    .testimonial-card .author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-card .author .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--orange-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--orange-700);
+      font-size: 0.9rem;
+    }
+
+    .testimonial-card .author .name {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .testimonial-card .author .role {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      padding: 80px 0;
+      background: #fff;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .contact-info .section-title {
+      margin-bottom: 12px;
+    }
+
+    .contact-info p {
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .contact-item:last-child {
+      border-bottom: none;
+    }
+
+    .contact-item .icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--orange-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--orange-600);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-item .detail {
+      font-weight: 500;
+    }
+
+    .contact-item .sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .contact-form {
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+
+    .contact-form h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .contact-form .sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .contact-form .form-group {
+      margin-bottom: 16px;
+    }
+
+    .contact-form .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--text-secondary);
+    }
+
+    .contact-form .form-group input,
+    .contact-form .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: #fff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      color: var(--text-primary);
+    }
+
+    .contact-form .form-group input:focus,
+    .contact-form .form-group textarea:focus {
+      outline: none;
+      border-color: var(--orange-400);
+      box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.08);
+    }
+
+    .contact-form .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .contact-form .btn-primary {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 32px 0 40px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-light);
+    }
+
+    footer a {
+      color: var(--orange-600);
+      font-weight: 500;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 992px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .hero-stats {
+        justify-content: center;
+      }
+      .hero-visual .card-stack {
+        max-width: 300px;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .about-text .skills-list {
+        justify-content: center;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(254, 252, 249, 0.98);
+        padding: 20px 24px;
+        gap: 16px;
+        border-bottom: 1px solid var(--border-light);
+        box-shadow: var(--shadow-sm);
+      }
+      .nav-links.open a {
+        font-size: 1rem;
+      }
+      .hero-content h1 {
+        font-size: 2.4rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-stats {
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .hero-visual .card-stack .card-item {
+        padding: 14px 18px;
+        width: 90%;
+      }
+      .hero-visual .card-stack .card-item:nth-child(1) {
+        transform: rotate(-4deg) translateY(-12px) translateX(-6px);
+      }
+      .hero-visual .card-stack .card-item:nth-child(2) {
+        transform: rotate(3deg) translateY(6px) translateX(4px);
+      }
+      .hero-visual .card-stack .card-item:nth-child(3) {
+        transform: rotate(-1deg) translateY(18px) translateX(-3px);
+      }
+      .contact-form {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 16px;
+      }
+      .hero-content h1 {
+        font-size: 1.9rem;
+      }
+      .btn-primary,
+      .btn-secondary {
+        padding: 12px 24px;
+        font-size: 0.85rem;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* ─── REVEAL ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.1s;
+    }
+    .reveal-delay-2 {
+      transition-delay: 0.2s;
+    }
+    .reveal-delay-3 {
+      transition-delay: 0.3s;
+    }
+    .reveal-delay-4 {
+      transition-delay: 0.4s;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo">Lapi<span>.</span></div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact" class="nav-cta">Let's talk</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="badge">🚀 Shopify & E‑commerce Expert</div>
+          <h1>
+            Build, migrate &amp; scale<br />
+            <span class="highlight">with confidence</span>
+          </h1>
+          <p>
+            I help brands move from Etsy to Shopify, customize themes,
+            and optimise stores for conversion — so you can focus on
+            growing your business.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn-primary">Start a project <span>→</span></a>
+            <a href="#portfolio" class="btn-secondary">See my work</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="num">7+</span>
+              <span class="label">Stores launched</span>
+            </div>
+            <div class="stat">
+              <span class="num">100+</span>
+              <span class="label">Themes customized</span>
+            </div>
+            <div class="stat">
+              <span class="num">2 yrs</span>
+              <span class="label">Experience</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="orb"></div>
+          <div class="card-stack">
+            <div class="card-item">
+              <div class="chip"><span class="dot"></span> Shopify Store</div>
+              <div class="line"></div>
+              <div class="line short"></div>
+              <div style="display:flex;gap:6px;margin-top:8px;">
+                <span style="width:20px;height:20px;border-radius:4px;background:var(--orange-200);"></span>
+                <span style="width:20px;height:20px;border-radius:4px;background:var(--orange-300);"></span>
+                <span style="width:20px;height:20px;border-radius:4px;background:var(--orange-400);"></span>
+              </div>
+            </div>
+            <div class="card-item">
+              <div class="chip"><span class="dot"></span> Etsy → Shopify</div>
+              <div class="line"></div>
+              <div class="line short"></div>
+              <div style="display:flex;gap:6px;margin-top:8px;">
+                <span style="width:20px;height:20px;border-radius:4px;background:var(--orange-100);"></span>
+                <span style="width:20px;height:20px;border-radius:4px;background:var(--orange-200);"></span>
+              </div>
+            </div>
+            <div class="card-item">
+              <div class="chip"><span class="dot"></span> Custom Theme</div>
+              <div class="line"></div>
+              <div class="line short"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SERVICES ─── -->
+  <section id="services">
+    <div class="container">
+      <div class="services-header">
+        <span class="section-label">What I do</span>
+        <h2 class="section-title">Expert <span>services</span> for your store</h2>
+        <p class="section-desc">From migration to ongoing support — I cover the full Shopify lifecycle.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal reveal-delay-1">
+          <div class="icon-wrap">📦</div>
+          <h3>Etsy → Shopify Migration</h3>
+          <p>Seamless product, customer &amp; order transfer with zero downtime. Keep your Etsy shop active while we move.</p>
+          <span class="tag">Most popular</span>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="icon-wrap">🎨</div>
+          <h3>Theme Customization</h3>
+          <p>Tailor your store’s look &amp; feel to match your brand. Liquid edits, custom sections, and responsive design.</p>
+          <span class="tag">Liquid expert</span>
+        </div>
+        <div class="service-card reveal reveal-delay-3">
+          <div class="icon-wrap">⚡</div>
+          <h3>Conversion Optimization</h3>
+          <p>Improve load speed, checkout flow, and UX to turn more visitors into customers. Data-driven improvements.</p>
+          <span class="tag">ROI focused</span>
+        </div>
+        <div class="service-card reveal reveal-delay-1">
+          <div class="icon-wrap">🔌</div>
+          <h3>App Integrations</h3>
+          <p>Connect marketing, email, reviews, and analytics tools so your store works as a cohesive system.</p>
+          <span class="tag">20+ apps</span>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="icon-wrap">📈</div>
+          <h3>Store Setup &amp; Launch</h3>
+          <p>From domain to checkout — I handle the full setup so you can start selling immediately.</p>
+          <span class="tag">Turnkey</span>
+        </div>
+        <div class="service-card reveal reveal-delay-3">
+          <div class="icon-wrap">🛡️</div>
+          <h3>Ongoing Support</h3>
+          <p>Monthly maintenance, updates, and priority support to keep your store running smoothly.</p>
+          <span class="tag">Peace of mind</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PORTFOLIO ─── -->
+  <section id="portfolio">
+    <div class="container">
+      <div class="portfolio-header">
+        <span class="section-label">Selected work</span>
+        <h2 class="section-title">Stores I've <span>built &amp; improved</span></h2>
+        <p class="section-desc">Each project reflects a commitment to quality, speed, and brand alignment.</p>
+      </div>
+      <div class="portfolio-grid">
+        <a href="#" class="portfolio-item reveal reveal-delay-1">
+          <div class="thumb">
+            📚
+            <div class="overlay"><span>View project</span></div>
+          </div>
+          <div class="info">
+            <span class="type">Migration + Customization</span>
+            <h4>Lapi Books</h4>
+            <p>Online bookstore migrated from Etsy with a custom theme and integrated reviews.</p>
+          </div>
+        </a>
+        <a href="#" class="portfolio-item reveal reveal-delay-2">
+          <div class="thumb">
+            🐕
+            <div class="overlay"><span>View project</span></div>
+          </div>
+          <div class="info">
+            <span class="type">Full Store Setup</span>
+            <h4>Dog Care</h4>
+            <p>Pet‑tech store with dark theme, subscription integration, and optimized checkout.</p>
+          </div>
+        </a>
+        <a href="#" class="portfolio-item reveal reveal-delay-3">
+          <div class="thumb">
+            🚗
+            <div class="overlay"><span>View project</span></div>
+          </div>
+          <div class="info">
+            <span class="type">Theme Customization</span>
+            <h4>3D Car Parts</h4>
+            <p>Premium automotive store with advanced filtering, product variants, and speedy load.</p>
+          </div>
+        </a>
+        <a href="#" class="portfolio-item reveal reveal-delay-4">
+          <div class="thumb">
+            🏠
+            <div class="overlay"><span>View project</span></div>
+          </div>
+          <div class="info">
+            <span class="type">Store Setup</span>
+            <h4>Foyer Lapi</h4>
+            <p>Cozy home‑goods store with collections, blog, and email capture built in.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <span class="section-label">About me</span>
+          <h2 class="section-title">Turning ideas into <span>working stores</span></h2>
+          <p>
+            I'm <strong>Omelian</strong> — a Shopify developer with a passion for helping brands
+            make the leap from Etsy to a fully‑fledged e‑commerce store.
+          </p>
+          <p>
+            I combine technical expertise in Liquid, HTML, CSS, and JavaScript with
+            a deep understanding of what drives conversions. Every store I build is
+            fast, beautiful, and built to sell.
+          </p>
+          <div class="skills-list">
+            <span>Shopify Liquid</span>
+            <span>Theme Customization</span>
+            <span>Online Store 2.0</span>
+            <span>HTML / CSS / JS</span>
+            <span>App Integration</span>
+            <span>Checkout Optimisation</span>
+            <span>SEO</span>
+            <span>Etsy Migration</span>
+          </div>
+        </div>
+        <div class="about-visual">
+          <div class="box">
+            <span class="emoji">🧑‍💻</span>
+            <h4>Omelian Padovsky</h4>
+            <p>Shopify Developer · 2+ years · 7+ stores launched</p>
+            <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;font-size:1.4rem;">
+              <span>🇺🇦</span>
+              <span>🛒</span>
+              <span>⚡</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ─── -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="testimonials-header">
+        <span class="section-label">Testimonials</span>
+        <h2 class="section-title">What clients <span>say</span></h2>
+        <p class="section-desc">Real feedback from real projects.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="stars">★★★★★</div>
+          <blockquote>“Omelian migrated our entire Etsy shop to Shopify in under a week. The store looks incredible and our sales have already increased.”</blockquote>
+          <div class="author">
+            <div class="avatar">A</div>
+            <div><div class="name">Anna</div><div class="role">Fashion &amp; Apparel</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="stars">★★★★★</div>
+          <blockquote>“The theme customisation was spot‑on. Our brand feels premium now, and the checkout flow is so smooth — customers love it.”</blockquote>
+          <div class="author">
+            <div class="avatar">M</div>
+            <div><div class="name">Mark</div><div class="role">Health &amp; Supplements</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="stars">★★★★★</div>
+          <blockquote>“Lapi helped us recover 34% of abandoned carts with a simple email flow. Huge impact on our bottom line.”</blockquote>
+          <div class="author">
+            <div class="avatar">V</div>
+            <div><div class="name">Vadim</div><div class="role">Baby Products</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <span class="section-label">Get in touch</span>
+          <h2 class="section-title">Let's build <span>something great</span></h2>
+          <p>
+            Have a project in mind? Let's talk about how we can turn your
+            store into a high‑performing sales machine.
+          </p>
+          <div class="contact-item">
+            <div class="icon">📧</div>
+            <div>
+              <div class="detail">omeljanpadovcky@gmail.com</div>
+              <div class="sub">Email</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="icon">💬</div>
+            <div>
+              <div class="detail"><a href="https://www.linkedin.com/in/omelian-padovsky-996565311/" target="_blank">LinkedIn</a></div>
+              <div class="sub">Connect with me</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="icon">📷</div>
+            <div>
+              <div class="detail"><a href="https://www.instagram.com/omelian_3d" target="_blank">@omelian_3d</a></div>
+              <div class="sub">Instagram</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="icon">💻</div>
+            <div>
+              <div class="detail"><a href="https://github.com/omeljanpadovcky-create" target="_blank">GitHub</a></div>
+              <div class="sub">Code &amp; projects</div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form">
+          <h4>Send a message</h4>
+          <p class="sub">I'll reply within 24 hours.</p>
+          <form action="https://formspree.io/f/xyeygbby" method="POST">
+            <div class="form-group">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" placeholder="Omelian" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell me about your store…" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary">Send message <span>→</span></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="container">
+      © 2026 <a href="#">Lapi</a> · Shopify Developer · Ukraine
+      <br style="display:block;margin-top:4px;" />
+      <span style="font-size:0.75rem;color:var(--text-muted);">
+        Built with 🧡 &amp; ☕
+      </span>
+    </div>
+  </footer>
+
+  <!-- ─── SCRIPTS ─── -->
+  <script>
+    // ── Hamburger toggle ──
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Close nav on link click (mobile)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // ── Scroll reveal ──
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -60px 0px',
+      threshold: 0.12
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // ── Smooth anchor scroll ──
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // ── Active nav highlight ──
+    const sections = document.querySelectorAll('section[id]');
+    const navLinksArray = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinksArray.forEach(link => {
+            link.style.color = link.getAttribute('href') === '#' + id ? 'var(--text-primary)' : 'var(--text-secondary)';
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+    sections.forEach(section => navObserver.observe(section));
+  </script>
+
 </body>
 </html>
