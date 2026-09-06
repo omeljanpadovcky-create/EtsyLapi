@@ -894,7 +894,6 @@
     function openModal() {
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
-      // Reload iframe to reset form
       formIframe.src = formIframe.src;
     }
 
@@ -914,9 +913,6 @@
     // ── All "Select" buttons open modal ──
     document.querySelectorAll('.btn-select').forEach(btn => {
       btn.addEventListener('click', () => {
-        const pkg = btn.dataset.package || 'Package';
-        // Optionally pre-fill? Google Forms doesn't support simple URL params easily,
-        // but we can just open the modal.
         openModal();
       });
     });
@@ -932,7 +928,7 @@
       link.addEventListener('click', () => navLinks.classList.remove('open'));
     });
 
-    // ── Smooth scroll for nav links ──
+    // ── Smooth scroll ──
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const target = document.querySelector(this.getAttribute('href'));
